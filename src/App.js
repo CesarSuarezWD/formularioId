@@ -83,15 +83,15 @@ function App() {
   const passwordsFilled = password.password && cPassword.password
   const passwordsMatch = password.password === cPassword.password;
 
-  useEffect(() => {
-    if(passwordsFilled){
-      if(passwordsMatch){
-        console.log('Match')
-      }else {
-        console.log("Don't match")
-      }
-    }
-  }, [cPassword])
+  // useEffect(() => {
+  //   if(passwordsFilled){
+  //     if(passwordsMatch){
+  //       console.log('Match')
+  //     }else {
+  //       console.log("Don't match")
+  //     }
+  //   }
+  // }, [cPassword])
 
 
   return (
@@ -163,9 +163,9 @@ function App() {
                 </InputAdornment>
               }
               />
-              {/* <FormHelperText>Las contraseñas no son iguales</FormHelperText> */}
-              {/* <FormHelperText sx={passwordsFilled ? (passwordsMatch ? {display: 'none'} : {display: 'initial'}) : null}>Las contraseñas no son iguales</FormHelperText> */}
-              {/* {console.log(`passwordsFilled ${passwordsFilled}`, `passwordsMatch ${passwordsMatch}`)} */}
+              
+            <FormHelperText error sx={(passwordsFilled ? (passwordsMatch ? {display: 'none'} : {display: 'initial'}) : {display: 'none'})}>Las contraseñas no son iguales</FormHelperText>
+                
           </FormControl>
 
           <ContinueButton variant="contained">Continuar</ContinueButton>
