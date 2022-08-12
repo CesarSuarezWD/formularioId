@@ -3,7 +3,9 @@
   padding: 0;
 } */
 
-.input-container {
-  padding: 3rem;
+.App {
+  padding: 2rem 0 10rem 0;
+  background-image: url('./asset/bg1.png');
+  background-size: cover;
 }
 

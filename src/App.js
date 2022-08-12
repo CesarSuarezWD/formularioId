@@ -97,8 +97,8 @@ function App() {
   return (
     <div className="App">
           
-      <Container sx={{ width: '100vw' }} variant='standard'>
-        <Stack spacing={3} className='input-container'>
+      <Container sx={{ width: '100vw', padding: '3.8rem' }} variant='standard' className='container' >
+        <Stack spacing={1} className='input-container'>
           
           <h1>Registro</h1>
           <TextField id="standard-basic" label="Nombres" variant="standard" />
@@ -111,7 +111,7 @@ function App() {
             disablePortal
             id="combo-box-demo"
             options={gender}
-            sx={{ width: 280 }}
+            sx={{ width: 250 }}
             renderInput={(params) => <TextField {...params} label="Género" variant='standard' />}
           />
           <label>Teléfono 
@@ -125,6 +125,7 @@ function App() {
           <FormControl variant="standard">
             <InputLabel htmlFor="standard-adornment-password">Contraseña</InputLabel>
             <Input
+              // error={true}
               id="standard-adornment-password"
               type={password.showPassword ? 'text' : 'password'}
               value={password.password}
@@ -141,6 +142,7 @@ function App() {
                 </InputAdornment>
               }
             />
+            <FormHelperText error>La contraseña debe tener mas de 8 caracteres, debe contener al menos un caracter especial como @*#& y al menos un numero.</FormHelperText>
           </FormControl>
 
           <FormControl variant="standard">
