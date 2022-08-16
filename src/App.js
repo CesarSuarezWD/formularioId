@@ -15,6 +15,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Container } from '@mui/system';
+import { PWDRequiste } from './components/PWDRequiste/PWDRequiste';
 
 
 function App() {
@@ -50,6 +51,15 @@ function App() {
     showPassword: false,
   });
 
+  const [ pwdRequiste, setRequiste ] = useState( false );
+
+  const [ checks, setChecks ] = useState({
+    capsLetterCheck: false,
+    numberCheck: false,
+    pwdLengthCheck: false,
+    specialCharCheck: false
+  });
+
   const handleChange = (prop) => (event) => {
     setPassword({ ...password, [prop]: event.target.value });
   };
@@ -80,8 +90,32 @@ function App() {
     event.preventDefault();
   };
 
+  const handleOnKeyUp = (event) => {
+    const { value } = event.target;
+    const capsLetterCheck = /[A-Z]/.test(value); 
+    const numberCheck = /[0-9]/.test(value);
+    const pwdLengthCheck = value.length >= 8;
+    const specialCharCheck = /[!@#$%^&*]/.test(value);
+    setChecks({
+      capsLetterCheck,
+      numberCheck,
+      pwdLengthCheck,
+      specialCharCheck,
+    })
+  }
+
+  const handleOnFocus = () => {
+    setRequiste( true );
+  }
+
+  const handleOnBlur = () => {
+    setRequiste( false );
+  }
+
   const passwordsFilled = password.password && cPassword.password
   const passwordsMatch = password.password === cPassword.password;
+
+  
 
   // useEffect(() => {
   //   if(passwordsFilled){
@@ -100,7 +134,7 @@ function App() {
       <Container sx={{ width: '100vw', padding: '3.8rem' }} variant='standard' className='container' >
         <Stack spacing={1} className='input-container'>
           
-          <h1>Registro</h1>
+          <h1 className='title'>Registro</h1>
           <TextField id="standard-basic" label="Nombres" variant="standard" />
           <TextField id="standard-basic" label="Apellidos" variant="standard" />
           <TextField id="standard-basic" label="Documento de identidad" variant="standard" />
@@ -130,6 +164,9 @@ function App() {
               type={password.showPassword ? 'text' : 'password'}
               value={password.password}
               onChange={handleChange('password')}
+              onKeyUp={handleOnKeyUp}
+              onFocus={handleOnFocus}
+              onBlur={handleOnBlur}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -142,7 +179,12 @@ function App() {
                 </InputAdornment>
               }
             />
-            <FormHelperText error>La contraseña debe tener mas de 8 caracteres, debe contener al menos un caracter especial como @*#& y al menos un numero.</FormHelperText>
+            { pwdRequiste ? <PWDRequiste
+              capsLetterFlag = {checks.capsLetterCheck ? {display: 'none'} : {display: 'initial'}}
+              numberFlag = {checks.numberCheck ? {display: 'none'} : {display: 'initial'}}
+              pwdLengthFlag = {checks.pwdLengthCheck ? {display: 'none'} : {display: 'initial'}}
+              specialCharFlag = {checks.specialCharCheck ? {display: 'none'} : {display: 'initial'}}
+            /> : null}
           </FormControl>
 
           <FormControl variant="standard">

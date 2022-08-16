@@ -1,4 +1,38 @@
 .form-control{
-    color: black;
+    color: white;
     width: 10vw;
+}
+
+.react-tel-input .form-control {
+    border: none;
+    border-bottom: 1px solid #ffffff;
+    background: none;
+    border-radius: 0;
+    max-width: 70vw;
+}
+
+.react-tel-input .flag-dropdown {
+    background: none;
+    border: none;
+}
+
+.react-tel-input .flag-dropdown.open {
+    background: none;
+}
+
+.react-tel-input .flag-dropdown.open .selected-flag {
+    background: none;
+}
+
+.react-tel-input .selected-flag .arrow {
+    border-top: 4px solid #ffffff;
+}
+
+.react-tel-input .selected-flag .arrow.up {
+    border-bottom: 4px solid #ffffff;
+}
+
+
+.react-tel-input .flag-dropdown .selected-flag {
+    background: none;
 }
